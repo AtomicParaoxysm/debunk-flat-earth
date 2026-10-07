@@ -1,0 +1,328 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #0b1020;
+  color: #f5f5f5;
+  margin: 0;
+  padding: 14px 16px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin: 0 0 10px;
+}
+
+h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.5em;
+}
+
+/* Two-column layout */
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 500px;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.flat-c { color: #ffcc00; }
+.globe-c { color: #66aaff; }
+.flat-bg { background: #ffcc00; }
+.globe-bg { background: #66aaff; }
+
+.params, .formula, .controls, .chart-card {
+  background: #151a2b;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  border: 1px solid #252b40;
+}
+
+.param-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+}
+
+.params label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+}
+
+.params input {
+  width: 90px;
+  padding: 4px;
+  background: #1f2538;
+  color: #fff;
+  border: 1px solid #2f3755;
+  border-radius: 4px;
+}
+
+.formula p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+}
+
+code {
+  background: #1f2538;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.controls label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.values {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 6px;
+  font-size: 0.92rem;
+}
+
+.values p {
+  margin: 0;
+}
+
+/* Chart */
+#chart {
+  display: block;
+  width: 100%;
+  height: 150px;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font-size: 0.85rem;
+  color: #d0d4e8;
+  margin-top: 4px;
+}
+
+.swatch {
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Sky panels */
+.skies {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.sky-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sky {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at 50% 120%, #1b2135 0, #050712 70%);
+  border-radius: 50%;
+  border: 2px solid #2f3755;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff 0, #d0d4e0 40%, #9ba0b5 70%, #6b7085 100%);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+  transition: width 0.15s linear, height 0.15s linear;
+}
+
+.sky-label {
+  margin: 6px 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.legend {
+  font-size: 0.9rem;
+  color: #d0d4e8;
+  margin: 8px 0 0;
+  min-height: 3.6em;
+}
+
+/* Diagram UI */
+.diagram-ui {
+  position: relative;
+  width: 500px;
+  height: 230px;
+  background: #0f1425;
+  border-radius: 8px;
+  margin-top: 8px;
+  border: 1px solid #252b40;
+  overflow: hidden;
+}
+
+.diagram-title {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  font-size: 0.8rem;
+  color: #8a90aa;
+}
+
+.ground {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #4a4f70;
+}
+
+.edge {
+  position: absolute;
+  bottom: 16px;
+  width: 3px;
+  height: 18px;
+  background: #ff5566;
+  transform: translateX(-50%);
+}
+
+.observer {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #00d0ff;
+  border-radius: 50%;
+  transform: translate(-50%, 0);
+}
+
+.observer .eye {
+  position: absolute;
+  top: -4px;
+  left: 3px;
+  width: 6px;
+  height: 6px;
+  background: #88e0ff;
+  border-radius: 50%;
+}
+
+.moon-ui {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.moon-ui.beyond {
+  background: #ff5566;
+}
+
+.height-line-ui,
+.x-line-ui,
+.d-line-ui {
+  position: absolute;
+  height: 0;
+  background: transparent;
+  pointer-events: none;
+  transform-origin: 0 0;
+}
+
+.height-line-ui {
+  border-top: 2px dashed #888;
+}
+
+.x-line-ui {
+  border-top: 2px dashed #888;
+}
+
+.d-line-ui {
+  border-top: 2px solid #ffcc00;
+}
+
+.diagram-label {
+  position: absolute;
+  font-size: 0.8rem;
+  color: #ffcc00;
+  white-space: nowrap;
+}
+
+.edge-warning {
+  position: absolute;
+  top: 26px;
+  left: 10px;
+  right: 10px;
+  font-size: 0.8rem;
+  color: #ff5566;
+}
+
+/* Page header with link to the other page */
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.page-head h1 {
+  margin: 0;
+}
+
+.nav {
+  color: #66aaff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.nav:hover {
+  text-decoration: underline;
+}
+
+.nav-group {
+  display: flex;
+  gap: 16px;
+}
+
+/* Plain-English summary */
+.plain {
+  background: #151a2b;
+  border: 1px solid #252b40;
+  border-left: 3px solid #78e68c;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: #d0d4e8;
+}
+
+.plain strong {
+  color: #78e68c;
+}

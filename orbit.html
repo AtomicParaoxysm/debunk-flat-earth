@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Earth Orbits the Sun</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="venus.css">
+  <link rel="stylesheet" href="orbit.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="page-head">
+    <h1>Proof that Earth orbits the Sun: starlight aberration</h1>
+    <a class="nav" href="venus.html">← Phases of Venus</a>
+  </div>
+
+  <div class="columns">
+  <div class="col col-left">
+
+  <div class="params">
+    <h2>Editable Model Parameters</h2>
+    <div class="param-grid param-grid-3">
+      <label>
+        Star
+        <select id="starSelect"></select>
+      </label>
+      <label>
+        Distance (ly)
+        <input id="distInput" type="number" value="11.4" min="1" step="0.1">
+      </label>
+      <label>
+        Measured shift κ (″)
+        <input id="kappaInput" type="number" value="20.496" min="0.1" step="0.001">
+      </label>
+    </div>
+  </div>
+
+  <div class="formula">
+    <h2>Geometry & Formula</h2>
+    <p>Measured: every star traces a yearly loop of half-width <code>κ = 20.5″</code>, near or far</p>
+    <p>If Earth moves at speed v, light arrives tilted by <code>κ = v / c</code>, so <code>v = c · κ</code></p>
+    <p>Check: a 1 AU orbit once a year gives <code>v = 2π · 1 AU / 365.25 d</code>, the same number</p>
+    <p>Parallax (position) <code>p = 1 AU / d</code>, peaks ¼ year after aberration (velocity)</p>
+    <p>If Earth is still, the star itself must circle with radius <code>d · κ</code>, at speed <code>2π · d · κ / 1 yr</code></p>
+  </div>
+
+  <div class="controls">
+    <label for="tRange">
+      Day of year: <strong><span id="tVal">0</span></strong>
+      &nbsp;·&nbsp; Earth's speed from κ: <strong><span id="vVal">0</span> km/s</strong>
+    </label>
+    <input id="tRange" type="range" min="0" max="365" step="1" value="40" />
+
+    <div class="values">
+      <p class="globe-c"><strong>Aberration shift:</strong> <span id="abVal">0</span>″</p>
+      <p class="globe-c"><strong>Parallax shift:</strong> <span id="pxVal">0</span>″</p>
+      <p class="globe-c"><strong>Star's Doppler:</strong> <span id="dopVal">0</span> km/s</p>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-pair">
+      <div>
+        <h2>Aberration east-west (″)</h2>
+        <canvas id="chartAb"></canvas>
+      </div>
+      <div>
+        <h2>Parallax east-west (″)</h2>
+        <canvas id="chartPx"></canvas>
+      </div>
+    </div>
+    <div class="chart-legend">
+      <span><i class="swatch globe-bg"></i>Earth orbits the Sun</span>
+      <span><i class="swatch still-bg"></i>Earth stands still (Tycho / geocentric)</span>
+    </div>
+  </div>
+
+  </div>
+  <div class="col col-right">
+
+  <canvas id="orbits" class="orbits orbit-top"></canvas>
+
+  <div class="skies">
+    <div class="sky-panel">
+      <canvas id="skyAb" class="sky-trace"></canvas>
+      <p class="sky-label globe-c">Aberration loop: <span id="abSize">20.5</span>″ for every star</p>
+    </div>
+    <div class="sky-panel">
+      <canvas id="skyPx" class="sky-trace"></canvas>
+      <p class="sky-label globe-c">Parallax loop: <span id="pxSize">0.29</span>″ for this star</p>
+    </div>
+  </div>
+
+  <div class="proof">
+    <div class="proof-row">
+      <span>Speed from aberration <code>c · κ</code></span><strong id="vMeasured">0</strong>
+    </div>
+    <div class="proof-row">
+      <span>Speed of a 1 AU yearly orbit</span><strong id="vOrbit">0</strong>
+    </div>
+    <div class="proof-row still">
+      <span>Speed this star needs if Earth is still</span><strong id="vStar">0</strong>
+    </div>
+    <p id="verdict" class="proof-verdict"></p>
+  </div>
+
+  <div class="plain plain-right">
+    <strong>In plain English:</strong> Walk through rain and it seems to fall at a slant toward you. Starlight does the same:
+    because Earth is moving, every star looks tilted slightly in the direction we are heading, and the tilt reverses
+    over the year as we circle the Sun. The tilt gives our speed, 30 km/s, exactly what it takes to go around the Sun
+    once a year. If Earth stood still, distant stars would have to move faster than light to fake it.
+  </div>
+
+  </div>
+  </div>
+
+</div>
+
+<script src="orbit.js"></script>
+</body>
+</html>

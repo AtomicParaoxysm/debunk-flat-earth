@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phases of Venus</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="venus.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="page-head">
+    <h1>Phases of Venus: Sun-centred vs Earth-centred</h1>
+    <span class="nav-group">
+      <a class="nav" href="index.html">← Moon size</a>
+      <a class="nav" href="orbit.html">Next: Earth's orbit →</a>
+    </span>
+  </div>
+
+  <div class="columns">
+  <div class="col col-left">
+
+  <div class="params">
+    <h2>Editable Model Parameters</h2>
+    <div class="param-grid param-grid-3">
+      <label>
+        Venus orbit a (AU)
+        <input id="aInput" type="number" value="0.723" min="0.1" max="0.99" step="0.001">
+      </label>
+      <label>
+        Venus period (days)
+        <input id="pvInput" type="number" value="224.7" min="10" max="360" step="0.1">
+      </label>
+      <label>
+        Ptolemy Sun distance S (AU)
+        <input id="sInput" type="number" value="2" min="1" max="100" step="0.1">
+      </label>
+    </div>
+  </div>
+
+  <div class="formula">
+    <h2>Geometry & Formula</h2>
+    <p>Sun-centred: Earth <code>E(t) = 1 AU · (cos 2πt/365.25, sin …)</code>, Venus <code>V(t) = a · (cos 2πt/Pᵥ, sin …)</code></p>
+    <p>Distance <code>Δ = |V − E|</code>, apparent size <code>θ = 2 · arctan(Rᵥ / Δ)</code>, Rᵥ = 6,052 km</p>
+    <p>Phase angle i at Venus, between the Sun and us: <code>cos i = (s · e) / (|s| |e|)</code></p>
+    <p>Lit fraction we see: <code>k = (1 + cos i) / 2</code> (1 = full, 0 = new)</p>
+    <p>Earth-centred (Ptolemy): same Venus path around us, but the Sun sits farther out at S, beyond Venus</p>
+  </div>
+
+  <div class="controls">
+    <label for="tRange">
+      Days since Venus passed between us and the Sun: <strong><span id="tVal">0</span></strong>
+      &nbsp;·&nbsp; Angle from Sun: <strong><span id="elongVal">0</span>°</strong>
+    </label>
+    <input id="tRange" type="range" min="0" max="584" step="1" value="120" />
+
+    <div class="values">
+      <p><strong>Distance Δ:</strong> <span id="distVal">0</span> AU</p>
+      <p><strong>Size θ:</strong> <span id="sizeVal">0</span>″</p>
+      <p class="globe-c"><strong>Sun-centred lit:</strong> <span id="kHelioVal">0</span>%</p>
+      <p class="flat-c"><strong>Earth-centred lit:</strong> <span id="kGeoVal">0</span>%</p>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-pair">
+      <div>
+        <h2>Lit fraction through one cycle</h2>
+        <canvas id="chartTime"></canvas>
+      </div>
+      <div>
+        <h2>Size vs lit fraction</h2>
+        <canvas id="chartSize"></canvas>
+      </div>
+    </div>
+    <div class="chart-legend">
+      <span><i class="swatch globe-bg"></i>Sun-centred (Copernicus)</span>
+      <span><i class="swatch flat-bg"></i>Earth-centred (Ptolemy)</span>
+      <span><i class="swatch galileo-bg"></i>What Galileo saw in 1610</span>
+    </div>
+  </div>
+
+  <div class="plain">
+    <strong>In plain English:</strong> Venus can only look full when the Sun is lighting it from behind, as seen from us.
+    That only happens when Venus is on the far side of the Sun. Telescopes show Venus full exactly when it looks smallest
+    and farthest away, so Venus must be going around the Sun, not around the Earth.
+  </div>
+  </div>
+  <div class="col col-right">
+
+  <div class="skies">
+    <div class="sky-panel">
+      <canvas id="scopeHelio" class="scope"></canvas>
+      <p class="sky-label globe-c">Sun-centred predicts<br><span id="kHelioLbl">0</span>% lit</p>
+    </div>
+    <div class="sky-panel">
+      <canvas id="scopeGeo" class="scope"></canvas>
+      <p class="sky-label flat-c">Earth-centred predicts<br><span id="kGeoLbl">0</span>% lit</p>
+    </div>
+  </div>
+
+  <p id="verdict" class="legend"></p>
+
+  <canvas id="orbits" class="orbits"></canvas>
+  <p id="modelNote" class="model-note"></p>
+
+  </div>
+  </div>
+
+</div>
+
+<script src="venus.js"></script>
+</body>
+</html>

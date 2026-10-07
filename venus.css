@@ -1,0 +1,50 @@
+.param-grid-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.param-grid-3 input {
+  width: 70px;
+}
+
+.galileo-bg { background: rgba(120, 230, 140, 0.55); }
+
+.chart-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.chart-pair h2 {
+  font-size: 0.95rem;
+}
+
+.chart-pair canvas {
+  display: block;
+  width: 100%;
+  height: 120px;
+}
+
+.scope {
+  width: 200px;
+  height: 200px;
+}
+
+.orbits {
+  display: block;
+  width: 500px;
+  height: 230px;
+  background: #0f1425;
+  border-radius: 8px;
+  border: 1px solid #252b40;
+  margin-top: 8px;
+}
+
+.model-note {
+  font-size: 0.85rem;
+  color: #8a90aa;
+  margin: 6px 0 0;
+}
+
+.plain-right {
+  margin-top: 8px;
+}

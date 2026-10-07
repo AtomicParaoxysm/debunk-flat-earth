@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flat Earth Moon Size Visualization</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="page-head">
+    <h1>Flat Earth Moon Size Visualization</h1>
+    <a class="nav" href="venus.html">Next: phases of Venus →</a>
+  </div>
+
+  <div class="columns">
+  <div class="col col-left">
+
+  <div class="params">
+    <h2>Editable Model Parameters</h2>
+    <div class="param-grid">
+      <label>
+        Flat disc radius R (km)
+        <input id="Rinput" type="number" value="20000" min="1">
+      </label>
+      <label>
+        Moon height h (km)
+        <input id="Hinput" type="number" value="4800" min="1">
+      </label>
+      <label>
+        Flat Moon radius r (km)
+        <input id="RmoonInput" type="number" value="50" min="1">
+      </label>
+      <label>
+        Your latitude φ (°)
+        <input id="LatInput" type="number" value="43.7" min="0" max="89" step="0.1">
+      </label>
+    </div>
+  </div>
+
+  <div class="formula">
+    <h2>Geometry & Formula</h2>
+    <p>Moon's angle above the horizon (what you see), t hours after moonrise: <code>sin α = cos φ · cos(15° · (t − 6))</code></p>
+    <p>Flat: Moon stays at fixed height h, so to appear at angle α it must be <code>x = h / tan α</code> away, so <code>d = h / sin α</code></p>
+    <p>Globe: <code>d = √(D² − Rₑ² cos² α) − Rₑ sin α</code>, D = 384,400 km, Rₑ = 6,371 km</p>
+    <p>Both: angular diameter <code>θ = 2 · arctan(r / d)</code></p>
+  </div>
+
+  <div class="controls">
+    <label for="tRange">
+      Time since moonrise t: <strong><span id="tVal">3.0</span> h</strong>
+      &nbsp;·&nbsp; Moon's angle above horizon α: <strong><span id="altVal">0</span>°</strong>
+    </label>
+    <input id="tRange" type="range" min="0" max="12" step="0.05" value="3" />
+
+    <div class="values">
+      <p class="flat-c"><strong>Flat x:</strong> <span id="xVal">0</span> km</p>
+      <p class="flat-c"><strong>Flat d:</strong> <span id="dVal">0</span> km</p>
+      <p class="flat-c"><strong>Flat θ:</strong> <span id="thetaVal">0</span>°</p>
+      <p class="globe-c"><strong>Globe d:</strong> <span id="dGlobeVal">0</span> km</p>
+      <p class="globe-c"><strong>Globe θ:</strong> <span id="thetaGlobeVal">0</span>°</p>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h2>Angular diameter through the night</h2>
+    <canvas id="chart"></canvas>
+    <div class="chart-legend">
+      <span><i class="swatch flat-bg"></i>Flat earth prediction</span>
+      <span><i class="swatch globe-bg"></i>Globe prediction (what cameras measure, ≈0.52°)</span>
+    </div>
+  </div>
+
+  </div>
+  <div class="col col-right">
+
+  <!-- VISUALIZATION -->
+  <div class="skies">
+    <div class="sky-panel">
+      <div class="sky"><div id="moonFlat" class="moon"></div></div>
+      <p class="sky-label flat-c">Flat earth predicts<br><span id="flatPct">100</span>% of peak size</p>
+    </div>
+    <div class="sky-panel">
+      <div class="sky"><div id="moonGlobe" class="moon"></div></div>
+      <p class="sky-label globe-c">Globe predicts<br><span id="globePct">100</span>% of peak size</p>
+    </div>
+  </div>
+
+  <p id="verdict" class="legend"></p>
+
+  <!-- SIDE VIEW OF THE FLAT MODEL -->
+  <div class="diagram-ui">
+    <div class="diagram-title">Flat model, side view (east ← → west)</div>
+    <div class="ground"></div>
+    <div id="edgeL" class="edge"></div>
+    <div id="edgeR" class="edge"></div>
+
+    <div id="observer" class="observer">
+      <div class="eye"></div>
+    </div>
+
+    <div id="moonUI" class="moon-ui"></div>
+
+    <div id="heightLineUI" class="height-line-ui"></div>
+    <div id="xLineUI" class="x-line-ui"></div>
+    <div id="dLineUI" class="d-line-ui"></div>
+    <div id="altLabel" class="diagram-label"></div>
+    <div id="edgeWarning" class="edge-warning"></div>
+  </div>
+
+  </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
